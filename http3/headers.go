@@ -119,7 +119,7 @@ func parseHeaders(decodeFn qpack.DecodeFunc, isRequest bool, sizeLimit int, head
 				return header{}, fmt.Errorf("invalid header field name: %q", h.Name)
 			}
 			for _, invalidField := range invalidHeaderFields {
-				if h.Name == invalidField {
+				if h.Name == invalidField && isRequest {
 					return header{}, fmt.Errorf("invalid header field name: %q", h.Name)
 				}
 			}
